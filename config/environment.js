@@ -13,17 +13,22 @@ module.exports = function(environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+  };
+
+  ENV['ember-cli-mirage'] = {
+    enabled: false,
   };
 
   if (environment === 'development') {
+    ENV.host = 'http://localhost:3000';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -32,6 +37,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
+    ENV.host = '';
     // Testem prefers this...
     ENV.locationType = 'none';
 
