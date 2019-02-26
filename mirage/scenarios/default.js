@@ -9,9 +9,16 @@ export default function(server) {
     description: 'Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet.',
   });
 
-  server.create('booking', { rental });
-  server.create('booking', { rental });
-  server.create('booking', { rental });
+  let user = server.create('user', {
+    email: 'john@doe.com'
+  })
+
+  let user2 = server.create('user', {
+    email: 'jane@foxtrot.com'
+  })
+  server.create('booking', { rental, user });
+  server.create('booking', { rental, user });
+  server.create('booking', { rental, user: user2 });
 
   server.create('rental', {
     title: 'Urban Living',

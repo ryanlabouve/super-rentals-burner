@@ -39,7 +39,8 @@
         {{#each this.model.bookings as |booking|}}
           <tr>
             <td>{{moment-format booking.date "YYYY-MM-DD"}}</td>
-            <td>Party</td>
+            {{log booking.user}}
+            <td>{{booking.user.email}}</td>
           </tr>
         {{/each}}
       </tbody>
