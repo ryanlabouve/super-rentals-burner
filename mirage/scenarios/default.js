@@ -1,5 +1,5 @@
 export default function(server) {
-  server.create('rental', {
+  let rental = server.create('rental', {
     title: 'Downtown charm',
     owner: 'Violet Beuregargde',
     city: 'Portland',
@@ -8,6 +8,10 @@ export default function(server) {
     image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
     description: 'Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet.',
   });
+
+  server.create('booking', { rental });
+  server.create('booking', { rental });
+  server.create('booking', { rental });
 
   server.create('rental', {
     title: 'Urban Living',

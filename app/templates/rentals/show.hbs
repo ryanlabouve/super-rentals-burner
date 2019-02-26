@@ -22,4 +22,27 @@
       </div>
     </div>
   </div>
+  <div>
+    <h2>Bookings</h2>
+    <table style="width: 100%;">
+      <thead>
+        <tr>
+            <th>
+              Booking Date
+            </th>
+            <tr>
+              Booking Party
+            </tr>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.model.bookings as |booking|}}
+          <tr>
+            <td>{{moment-format booking.date "YYYY-MM-DD"}}</td>
+            <td>Party</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
