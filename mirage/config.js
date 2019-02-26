@@ -19,4 +19,5 @@ export default function() {
   });
 
   this.get('/bookings/:id');
+  this.post('/bookings');
 }

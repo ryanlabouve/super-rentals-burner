@@ -25,6 +25,7 @@
   <div>
     {{#if selected}}
       Selected Date {{selected}}
+      <button onclick={{action "bookNow" (hash selectedDate=selected rental=this.model)}}>Book now</button>
     {{/if}}
     {{#power-calendar
       center=center

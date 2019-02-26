@@ -21,6 +21,18 @@ export default Controller.extend({
     changeCenter(unit, calendar, e) {
       let newCenter = calendar.center.clone()[unit](e.target.value);
       calendar.actions.changeCenter(newCenter);
+    },
+
+    bookNow({rental, selectedDate}) {
+      this.store.createRecord('booking', {
+        rental,
+        date: selectedDate
+      }).save().then(booking => {
+        console.log("created booking", booking)
+        // debugger;
+      }).catch(error => {
+        console.error(error);
+      })
     }
   }
 });
