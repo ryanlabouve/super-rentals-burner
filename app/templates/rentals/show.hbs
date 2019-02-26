@@ -23,6 +23,44 @@
     </div>
   </div>
   <div>
+    {{#if selected}}
+      Selected Date {{selected}}
+    {{/if}}
+    {{#power-calendar
+      center=center
+      onSelect=(action (mut selected) value="date")
+      onCenterChange=(action (mut center) value="date") as |calendar|
+      }}
+      {{#calendar.nav}}
+        <span class="with-invisible-select">
+          {{#with (moment-format calendar.center 'MMMM') as |currentMonth|}}
+            {{currentMonth}}
+            <select onchange={{action "changeCenter" "month" calendar}}>
+              {{#each months as |month|}}
+                <option value="{{month}}" selected={{eq month currentMonth}}>{{month}}</option>
+              {{/each}}
+            </select>
+          {{/with}}
+        </span>
+        <span class="with-invisible-select">
+          {{#with (moment-format calendar.center 'YYYY') as |currentYear|}}
+            {{currentYear}}
+            <select onchange={{action "changeCenter" "year" calendar}}>
+              {{#each years as |year|}}
+                <option value="{{year}}" selected={{eq year currentYear}}>{{year}}</option>
+              {{/each}}
+            </select>
+          {{/with}}
+        </span>
+      {{/calendar.nav}}
+
+      {{#calendar.days as |day|}}
+        {{day.number}}
+      {{/calendar.days}}
+    {{/power-calendar}}
+  </div>
+
+  <div>
     <h2>Bookings</h2>
     <table style="width: 100%;">
       <thead>
