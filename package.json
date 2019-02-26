@@ -15,7 +15,8 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
-    "test": "ember test"
+    "test": "ember test",
+    "start:mirage": "ENABLE_MIRAGE=true ember serve"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",

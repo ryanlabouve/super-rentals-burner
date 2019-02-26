@@ -23,12 +23,22 @@ module.exports = function(environment) {
     },
   };
 
-  ENV['ember-cli-mirage'] = {
-    enabled: false,
-  };
+  if (process.env.ENABLE_MIRAGE) {
+    ENV['ember-cli-mirage'] = {
+      enabled: true,
+    };
+  } else {
+    ENV['ember-cli-mirage'] = {
+      enabled: false,
+    };
+  }
 
   if (environment === 'development') {
-    ENV.host = 'http://localhost:3000';
+    if (ENV['ember-cli-mirage'].enabled) {
+      ENV.host = '';
+    } else {
+      ENV.host = 'http://localhost:3000';
+    }
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
