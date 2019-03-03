@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import {module, test} from 'qunit';
 import {
+  pauseTest,
   click,
   visit,
   currentURL,
@@ -98,6 +99,30 @@ module('Acceptance | list rentals', function(hooks) {
     assert.ok(
       this.element.querySelector('.show-listing .description'),
       'should list a description of the property',
+    );
+  });
+
+  test('should be able to book a rental', async function(assert) {
+    server.create('rental', {
+      title: 'StarSpace46',
+      owner: 'StarSpace46',
+      city: 'Oklahoma City',
+      category: 'Co-Working',
+      image: 'https://com-ryanlabouve-blog.s3.amazonaws.com/ember-conf/starspace46.jpg',
+      description: 'OKC\'s Premier Entrepreneurial & Technology CoWorking Hub',
+    });
+
+    await visit('/rentals');
+    await click(`[href='/rentals/1']`);
+
+    await click('[data-test-book-rental]');
+
+    assert.equal(server.db.bookings.length, 1);
+
+    assert.equal(
+      this.element.querySelectorAll('[data-test-booking]').length,
+      1,
+      'We should see a booking',
     );
   });
 });
