@@ -8,4 +8,6 @@ export default DS.Model.extend({
   image: DS.attr(),
   bedrooms: DS.attr(),
   description: DS.attr(),
+
+  bookings: DS.hasMany()
 });
