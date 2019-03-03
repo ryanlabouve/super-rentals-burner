@@ -1,35 +1,32 @@
 export default function(server) {
   server.create('rental', {
-    title: 'Downtown charm',
-    owner: 'Violet Beuregargde',
-    city: 'Portland',
-    category: 'Apartment',
-    bedrooms: 3,
-    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg',
-    description: 'Convenience is at your doorstep with this charming downtown rental. Great restaurants and active night life are within a few feet.',
+    title: 'StarSpace46',
+    owner: 'StarSpace46',
+    city: 'Oklahoma City',
+    category: 'Co-Working',
+    image: 'https://com-ryanlabouve-blog.s3.amazonaws.com/ember-conf/starspace46.jpg',
+    description: 'OKC\'s Premier Entrepreneurial & Technology CoWorking Hub',
   });
 
   server.create('rental', {
-    title: 'Urban Living',
-    owner: 'Mike Teavee',
-    city: 'Seattle',
-    category: 'Condo',
-    bedrooms: 1,
+    title: '36 Degrees North',
+    owner: '36 Degrees North',
+    city: 'Tulsa',
+    category: 'Co-Working',
     image:
-      'https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg',
+      'https://static1.squarespace.com/static/55085720e4b0813599644fae/56ccba3c4d088e1e42e718ce/56ccc08c27d4bd75712d55bc/1456260877991/36+Degrees+North+Small+Conference_20160215_FullSize.jpg?format=1500w',
     description:
-      'A commuters dream. This rental is within walking distance of 2 bus stops and the Metro.',
+      'Tulsa\'s Basecamp for Entrepreneurs',
   })
 
   server.create('rental', {
-    title: 'Grand Old Mansion',
-    owner: 'Veruca Salt',
+    title: 'The Clockhouse',
+    owner: 'Envoy',
     city: 'San Francisco',
-    category: 'Estate',
-    bedrooms: 15,
+    category: 'Office',
     image:
-      'https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg',
+      'https://www.officelovin.com/wp-content/uploads/2015/05/envoy-san-francisco-office-7.jpg',
     description:
-      'This grand old mansion sits on over 100 acres of rolling hills and dense redwood forests.',
+      'From people to packages, Envoy helps you handle everything that comes through your company’s front door. But we’re not stopping with the lobby, and we hope you won’t either.',
   })
 }
