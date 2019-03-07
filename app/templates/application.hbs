@@ -13,8 +13,12 @@
         Contact
       {{/link-to}}
     </div>
+
+    <button class="login-with-github" onclick={{action "login"}}>Login with Github</button>
   </div>
   <div class="body">
     {{outlet}}
   </div>
 </div>
+
+Authorization Code: {{session.data.authenticated.authorizationCode}} <br />

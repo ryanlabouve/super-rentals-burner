@@ -7,3 +7,10 @@
 .menu {
   background-color: #170603;
 }
+
+.login-with-github {
+  padding: 0.6rem 1rem;
+  background: 1px solid white;
+  border-radius: 4px;
+  color: white;
+}
