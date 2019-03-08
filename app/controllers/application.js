@@ -1,13 +1,22 @@
-import Controller from '@ember/controller';
-import {inject as service} from '@ember/service';
-import config from 'super-rentals/config/environment';
+import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
+import config from "super-rentals/config/environment";
 
 export default Controller.extend({
   session: service(),
-  config: config.torii.providers['github-oauth2'],
+  currentUser: service(),
+  config: config.torii.providers["github-oauth2"],
   actions: {
     login() {
-      this.get('session').authenticate('authenticator:torii', 'github');
+      let currentUser = this.get("currentUser");
+      this.get("session")
+        .authenticate("authenticator:torii", "github")
+        .then(() => {
+          currentUser.load();
+        });
+    },
+    logout() {
+      this.get("session").invalidate();
     }
   }
 });

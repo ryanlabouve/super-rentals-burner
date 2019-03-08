@@ -14,7 +14,33 @@
       {{/link-to}}
     </div>
 
-    <button class="login-with-github" onclick={{action "login"}}>Login with Github</button>
+    {{#if (and session.isAuthenticated currentUser.user)}}
+      <div style="display: inline-block; color: white;">
+        {{#basic-dropdown as |dd|}}
+          {{#dd.trigger}}
+            <div style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: inline-block;
+                overflow:hidden;
+                border: 2px solid rgba(255,255,255,0.8)
+              "
+            >
+              <img style="max-width: 100%;" src={{currentUser.user.avatarUrl}} alt="face">
+              <img src={{currentUser.user.avatarUrl}} alt="face">
+            </div>
+          {{/dd.trigger}}
+          {{#dd.content}}
+            <button onclick={{action "logout"}}>
+              Logout
+            </button>
+          {{/dd.content}}
+        {{/basic-dropdown}}
+      </div>
+    {{else}}
+      <button class="login-with-github" onclick={{action "login"}}>Login with Github</button>
+    {{/if}}
   </div>
   <div class="body">
     {{outlet}}
