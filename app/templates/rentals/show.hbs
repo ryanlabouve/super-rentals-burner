@@ -24,7 +24,11 @@
 <div class="jumbo show-listing">
   <h3 class="title">Book this office today!</h3>
   <div class="content">
-    <button onclick={{action 'bookRental' this.model}} data-test-book-rental>Book Now</button>
+    {{#if currentUser.user}}
+      <button onclick={{action "bookRental" this.model currentUser.user}} data-test-book-rental>Book Now</button>
+    {{else}}
+      Login to book
+    {{/if}}
   </div>
 </div>
 
@@ -33,7 +37,9 @@
   <div class="content">
     {{#each this.model.bookings as |booking|}}
       <div data-test-booking>
-        Booking~
+        <div><img style="widht: 30px; height: 30px; border-radius: 50%; overflow: hidden;" src={{booking.user.avatarUrl}}></div>
+        <div>{{booking.user.username}}</div>
+        <div>{{moment booking.createdAt "MM-DD-YYYY"}}</div>
       </div>
     {{/each}}
   </div>
