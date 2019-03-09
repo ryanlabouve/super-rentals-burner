@@ -25,10 +25,16 @@
   <h3 class="title">Book this office today!</h3>
   <div class="content">
     {{#if currentUser.user}}
-      <button onclick={{action "bookRental" this.model currentUser.user}} data-test-book-rental>Book Now</button>
+      {{book-now
+        rentalName=this.model.title
+        price=this.model.price
+        onToken=(action "bookRental" this.model currentUser.user)
+        data-test-book-rental="true"
+      }}
     {{else}}
       Login to book
     {{/if}}
+
   </div>
 </div>
 

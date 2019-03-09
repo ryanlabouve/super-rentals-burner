@@ -4,15 +4,19 @@ import { inject as service } from "@ember/service";
 export default Controller.extend({
   currentUser: service(),
   actions: {
-    bookRental(rental, user, e) {
-      e.preventDefault();
-
+    bookRental(rental, user, token, _e) {
+      // debugger;
+      // e.preventDefault();
       return this.store
         .createRecord("booking", {
           rental,
-          user
+          user,
+          stripeInfo: token
         })
         .save();
+    },
+    test() {
+      debugger;
     }
   }
 });
