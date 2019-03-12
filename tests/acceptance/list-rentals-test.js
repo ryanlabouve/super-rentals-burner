@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import {module, test} from 'qunit';
 import {
+  pauseTest,
   click,
   visit,
   currentURL,
@@ -43,6 +44,7 @@ module('Acceptance | list rentals', function(hooks) {
   });
 
   test('should list available rentals', async function(assert) {
+    server.createList('rental', 3)
     await visit('/');
     assert.equal(
       this.element.querySelectorAll('.listing').length,
@@ -52,8 +54,16 @@ module('Acceptance | list rentals', function(hooks) {
   });
 
   test('should filter the list of rentals by city', async function(assert) {
+    server.create('rental', {
+      city: 'Tulsa'
+    });
+
+    server.create('rental', {
+      city: 'okc'
+    });
+
     await visit('/');
-    await fillIn('.list-filter input', 'seattle');
+    await fillIn('.list-filter input', 'tulsa');
     await triggerKeyEvent('.list-filter input', 'keyup', 69);
     assert.equal(
       this.element.querySelectorAll('.results .listing').length,
@@ -63,17 +73,21 @@ module('Acceptance | list rentals', function(hooks) {
     assert.ok(
       this.element
         .querySelector('.listing .location')
-        .textContent.includes('Seattle'),
-      'should contain 1 listing with location Seattle',
+        .textContent.includes('Tulsa'),
+      'should contain 1 listing with location Tulsa',
     );
   });
 
   test('should show details for a selected rental', async function(assert) {
+    server.create('rental', {
+      title: 'Grand Old Mansion'
+    })
+
     await visit('/rentals');
-    await click('.grand-old-mansion');
+    await click(`[href='/rentals/1']`);
     assert.equal(
       currentURL(),
-      '/rentals/grand-old-mansion',
+      '/rentals/1',
       'should navigate to show route',
     );
     assert.ok(
@@ -85,6 +99,30 @@ module('Acceptance | list rentals', function(hooks) {
     assert.ok(
       this.element.querySelector('.show-listing .description'),
       'should list a description of the property',
+    );
+  });
+
+  test('should be able to book a rental', async function(assert) {
+    server.create('rental', {
+      title: 'StarSpace46',
+      owner: 'StarSpace46',
+      city: 'Oklahoma City',
+      category: 'Co-Working',
+      image: 'https://com-ryanlabouve-blog.s3.amazonaws.com/ember-conf/starspace46.jpg',
+      description: 'OKC\'s Premier Entrepreneurial & Technology CoWorking Hub',
+    });
+
+    await visit('/rentals');
+    await click(`[href='/rentals/1']`);
+
+    await click('[data-test-book-rental]');
+
+    assert.equal(server.db.bookings.length, 1);
+
+    assert.equal(
+      this.element.querySelectorAll('[data-test-booking]').length,
+      1,
+      'We should see a booking',
     );
   });
 });

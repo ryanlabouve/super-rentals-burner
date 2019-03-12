@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import DS from "ember-data";
 
 export default DS.Model.extend({
   title: DS.attr(),
@@ -8,4 +8,7 @@ export default DS.Model.extend({
   image: DS.attr(),
   bedrooms: DS.attr(),
   description: DS.attr(),
+  price: 2000,
+
+  bookings: DS.hasMany()
 });

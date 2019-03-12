@@ -21,6 +21,18 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+
+    torii: {
+      sessionServiceName: 'session',
+      providers: {
+        'github-oauth2': {
+          apiKey: '48ba376cd67f88fb8b71',
+          redirectUri: 'http://localhost:4586',
+          scope: 'repo user',
+          tokenExchangeUri: 'http://localhost:3000/api/tokens'
+        }
+      }
+    }
   };
 
   if (process.env.ENABLE_MIRAGE) {

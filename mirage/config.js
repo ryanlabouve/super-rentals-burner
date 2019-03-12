@@ -1,4 +1,5 @@
 export default function() {
+  this.logging = true;
   this.namespace = '/api';
   this.passthrough('https://api.mapbox.com/**');
 
@@ -15,6 +16,8 @@ export default function() {
 
   // Find and return the provided rental from our rental list above
   this.get('/rentals/:id', function(db, request) {
-    return {data: rentals.find(rental => request.params.id === rental.id)};
+    return db.rentals.find(request.params.id);
   });
+
+  this.post('/bookings');
 }
