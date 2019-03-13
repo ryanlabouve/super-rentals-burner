@@ -1,0 +1,14 @@
+@import "ember-power-calendar";
+
+.demo-calendar-medium {
+  @include ember-power-calendar($cell-size: 50px);
+}
+
+.ember-power-calendar-day {
+  padding: .3rem;
+
+  &--focused {
+    background: blue;
+    color: white;
+  }
+}

@@ -17,4 +17,7 @@ export default function() {
   this.get('/rentals/:id', function(db, request) {
     return db.rentals.find(request.params.id);
   });
+
+  this.get('/bookings/:id');
+  this.post('/bookings');
 }
