@@ -14,12 +14,27 @@
       <div class="detail">
         <strong>Location:</strong> {{this.model.city}}
       </div>
-      <div class="detail">
-        <strong>Number of bedrooms:</strong> {{this.model.bedrooms}}
-      </div>
       <div class="description">
         <p>{{this.model.description}}</p>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="jumbo show-listing">
+  <h3 class="title">Book this office today!</h3>
+  <div class="content">
+    <button onclick={{action 'bookRental' this.model}} data-test-book-rental>Book Now</button>
+  </div>
+</div>
+
+<div class="jumbo show-listing">
+  <h3 class="title">Bookings</h3>
+  <div class="content">
+    {{#each this.model.bookings as |booking|}}
+      <div data-test-booking>
+        Booking~
+      </div>
+    {{/each}}
   </div>
 </div>

@@ -1,4 +1,5 @@
 export default function() {
+  this.logging = true;
   this.namespace = '/api';
   this.passthrough('https://api.mapbox.com/**');
 
@@ -17,4 +18,6 @@ export default function() {
   this.get('/rentals/:id', function(db, request) {
     return db.rentals.find(request.params.id);
   });
+
+  this.post('/bookings');
 }
